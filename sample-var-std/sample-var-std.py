@@ -6,12 +6,11 @@ def sample_var_std(x: list) -> dict:
     """
     n = len(x)
     x_bar = float(np.mean(x))
-    total = 0
     
-    for i in range(n):
-        total += (x[i] - x_bar)**2
+    diffs = np.asarray(x) - x_bar
+    total = np.dot(diffs, diffs)
 
-    var = total / (n - 1)
+    var = float(total / (n - 1))
     sd = float(np.sqrt(var))
 
     return {"variance": var, "standard_deviation": sd}
